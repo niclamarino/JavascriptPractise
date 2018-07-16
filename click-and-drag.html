@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>27</title>
+
+<style type="text/css">
+
+	body {
+		background: #eee;
+		margin: 0;
+	}
+
+	.container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		height: 200px;
+		width: 610px;
+	}
+
+.items {
+  height:200px;
+  width:100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+  justify-content: space-around;
+}
+
+.items.active {
+  background: rgba(255,255,255,0.3);
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+  transform: scale(1);
+}
+
+.item {
+  width:200px;
+  height: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #9bd8ee;
+  background-size: cover;
+  background-position: center;
+}
+
+.item:nth-child(1) {
+	background-image: url(https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+
+.item:nth-child(2) {
+	background-image: url(https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(3) {
+	background-image: url(https://images.pexels.com/photos/219998/pexels-photo-219998.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(4) {
+	background-image: url(https://images.pexels.com/photos/449627/pexels-photo-449627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(5) {
+	background-image: url(https://images.pexels.com/photos/33044/sunflower-sun-summer-yellow.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(6) {
+	background-image: url(https://images.pexels.com/photos/386025/pexels-photo-386025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(7) {
+	background-image: url(https://images.pexels.com/photos/137132/pexels-photo-137132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(8) {
+	background-image: url(https://images.pexels.com/photos/654/clouds-cloudy-agriculture-farm.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(9) {
+	background-image: url(https://images.pexels.com/photos/931018/pexels-photo-931018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+.item:nth-child(10) {
+	background-image: url(https://images.pexels.com/photos/739285/pexels-photo-739285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350);
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<div class="items">
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+</div>
+</div>
+
+	<script>
+
+		const slider = document.querySelector('.items');
+		let isDown = false;
+		let startX;
+		let scrollLeft;
+
+		slider.addEventListener('mousedown', (e) => {
+			isDown = true;
+			slider.classList.add('active');
+			startX = e.pageX - slider.offsetLeft;
+			scrollLeft = slider.scrollLeft;
+		});
+
+		slider.addEventListener('mouseleave', () => {
+			isDown = false;
+			slider.classList.remove('active');
+		});
+
+		slider.addEventListener('mouseup', () => {
+			isDown = false;
+			slider.classList.remove('active');
+		});
+
+		slider.addEventListener('mousemove', (e) => {
+			if(!isDown) return;
+			e.preventDefault();
+			const x = e.pageX - slider.offsetLeft;
+			const walk = (x - startX) * 3;
+			slider.scrollLeft = scrollLeft - walk;
+		});
+
+		// var x = event.pageX Get the horizontal coordinate
+		// .offsetLeft Get the offset (Margin) of the element
+
+	</script>
+
+</body>
+</html>
